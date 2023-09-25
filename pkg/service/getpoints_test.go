@@ -17,7 +17,7 @@ func TestGetpoints(t *testing.T) {
 		{
 			name:              "get-points-target-ok",
 			ticketID:          "77b341b0-24db-4188-9954-ff353073f09a",
-			expectedPoints:    28,
+			expectedPoints:    53,
 			expectedErrorsStr: nil,
 		},
 		{
@@ -29,7 +29,7 @@ func TestGetpoints(t *testing.T) {
 		{
 			name:           "get-points-walgreens-error",
 			ticketID:       "801786e4-9515-40e7-8c31-8ce973526f5e",
-			expectedPoints: 15,
+			expectedPoints: 25,
 			expectedErrorsStr: []string{
 				"receipt total is not in a valid format value and won't be considered: " +
 					"strconv.ParseFloat: parsing \"$2.65\": invalid syntax",
@@ -41,7 +41,7 @@ func TestGetpoints(t *testing.T) {
 		{
 			name:           "get-points-target-error",
 			ticketID:       "cf912fd8-9727-4183-b6fa-c108b5af6c4c",
-			expectedPoints: 31,
+			expectedPoints: 36,
 			expectedErrorsStr: []string{
 				"date and/or time values are not in a valid format value and won't be considered: " +
 					"parsing time \"2022-01-02 01:13 PM\": extra text: \" PM\"",
@@ -50,7 +50,7 @@ func TestGetpoints(t *testing.T) {
 		{
 			name:           "get-points-target-item-price-error",
 			ticketID:       "afe8bad1-3538-49b3-8847-7dc45e6563b9",
-			expectedPoints: 41,
+			expectedPoints: 46,
 			expectedErrorsStr: []string{
 				"item price is not in a valid format value and won't be considered: " +
 					"strconv.ParseFloat: parsing \"$1.25\": invalid syntax",

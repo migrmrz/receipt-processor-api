@@ -39,6 +39,7 @@ func runCalculations(receipt rest.ProcessReceiptRequest) (points int, errors []s
 		itemsValidation,
 		itemDescriptionsValidation,
 		dateTimeValidations,
+		uniqueItemDescriptionValidation,
 	}
 
 	for _, validation := range validations {
@@ -156,16 +157,12 @@ func dateTimeValidations(receipt rest.ProcessReceiptRequest) (points int, errors
 	return points, errors
 }
 
-func uniqueItemDescription(receipt rest.ProcessReceiptRequest) (points int, errors []string) {
+func uniqueItemDescriptionValidation(receipt rest.ProcessReceiptRequest) (points int, errors []string) {
 	// 5 points for each unique description
 	descriptions := map[string]int{}
 
 	for _, item := range receipt.Items {
-		if _, ok := descriptions[item.ShortDescription]; ok {
-			descriptions[item.ShortDescription] += 1
-		} else {
-			descriptions[item.ShortDescription] = 1
-		}
+		descriptions[item.ShortDescription] += 1
 	}
 
 	for _, count := range descriptions {
